@@ -1,0 +1,30 @@
+networks:
+  analytics-net:
+    external:
+      name: shared-analytics-network
+  dmz-net:
+    external:
+      name: shared-dmz-network
+services:
+  elasticsearch:
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == linux
+        - node.role == worker
+    image: elasticsearch:5.6-alpine
+    networks:
+      analytics-net: {}
+  kibana:
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+        - node.role == worker
+    image: kibana:5.6
+    networks:
+      analytics-net: {}
+      dmz-net: {}
+version: '3.3'
+

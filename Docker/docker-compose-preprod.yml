@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+      
+  password-api:
+    deploy:
+      replicas: 3
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == linux
+    
+  password-web:
+    deploy:
+      replicas: 3
+      placement:
+        constraints:
+        - node.platform.os == linux        
+
+networks:
+  analytics-net:
+    external:
+      name: shared-analytics-network
+  dmz-net:
+    external:
+      name: shared-dmz-network

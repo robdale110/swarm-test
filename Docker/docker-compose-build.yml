@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+      
+  password-api:
+    build:
+      context: ../
+      dockerfile: ./Docker/api/Dockerfile
+
+  password-web:
+    build:
+      context: ../
+      dockerfile: ./Docker/web/Dockerfile

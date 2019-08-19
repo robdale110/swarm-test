@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+      
+  shared-proxy:
+    image: robdale110/shared-proxy
+    networks:
+      - dmz-net
+
+networks:
+  dmz-net:

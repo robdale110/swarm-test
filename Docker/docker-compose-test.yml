@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+      
+  password-api:
+    deploy:
+      endpoint_mode: dnsrr
+    
+  password-web:
+    ports:
+    #  - "80:80"
+      - mode: host
+        published: 80
+        target: 80
+    environment:
+      - "PasswordApi:Url=http://password-api:5001"
+
+networks:
+  password-net:
+    driver: overlay
+    attachable: true

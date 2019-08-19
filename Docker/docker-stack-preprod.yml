@@ -1,0 +1,30 @@
+networks:
+  analytics-net:
+    external:
+      name: shared-analytics-network
+  dmz-net:
+    external:
+      name: shared-dmz-network
+services:
+  password-api:
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == linux
+      replicas: 3
+    image: nginxdemos/hello
+    networks:
+      analytics-net: {}
+      dmz-net: {}
+  password-web:
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+      replicas: 3
+    image: nginxdemos/hello
+    networks:
+      dmz-net: {}
+version: '3.3'
+

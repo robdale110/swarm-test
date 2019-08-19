@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+      
+  password-api:
+    image: nginxdemos/hello
+    networks:
+      - analytics-net
+      - dmz-net
+
+  password-web:
+    image: nginxdemos/hello
+    networks:
+      - dmz-net
+
+networks:
+  analytics-net:
+  dmz-net:
